@@ -13,6 +13,7 @@ const PORT = process.env.PORT && Number(process.env.PORT)
 
 var appData = require('../data.json');
 var seller = appData.seller;
+var sellers = appData.sellers;
 var goods = appData.goods;
 var ratings = appData.ratings;
 
@@ -30,6 +31,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         res.json({
           errno: 0,
           data: seller
+        })
+      });
+      app.get('/api/sellers', function(req, res) {
+        res.json({
+          errno: 0,
+          data: sellers
         })
       });
       app.get('/api/goods', function(req, res) {

@@ -13,6 +13,21 @@ border-none()
   &:after
     display: none
 
+border-1px-before($color)
+  position: relative
+  &::before
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    border-top: 1px solid $color
+    content: ' '
+
+border-none-before()
+  &:before
+    display: none
+
 bg-image($url)
   background-image: url($url + "@2x.png")
   @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3)

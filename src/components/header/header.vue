@@ -110,7 +110,8 @@
       .avatar
         display: inline-block
         vertical-align: top
-        border-radius: 2px
+        img
+          border-radius: 2px
       .content
         display: inline-block
         margin-left: 16px

@@ -1,71 +1,77 @@
 <template>
   <div>
-    <v-header :seller="seller"></v-header>
-    <div class="tab border-1px">
-      <div class="tab-item">
-        <router-link to="/goods">商品</router-link>
-      </div>
-      <div class="tab-item">
-        <router-link to="/ratings">评论</router-link>
-      </div>
-      <div class="tab-item">
-        <router-link to="/seller">商家</router-link>
+    <keep-alive>
+      <router-view @selectSeller="selectSeller"></router-view>
+    </keep-alive>
+    <div class="toolbar-wrapper">
+      <div class="toolbar border-1px-before">
+        <div class="toolbar-item">
+          <router-link :to="{path:'/index'}">外卖</router-link>
+        </div>
+        <div class="toolbar-item">
+          <router-link :to="{path:'/find'}">发现</router-link>
+        </div>
+        <div class="toolbar-item">
+          <router-link :to="{path:'/order'}">订单</router-link>
+        </div>
+        <div class="toolbar-item">
+          <router-link :to="{path:'/me'}">我的</router-link>
+        </div>
       </div>
     </div>
-    <keep-alive>
-      <router-view :seller="seller"></router-view>
-    </keep-alive>
+    <!--<seller :selectedSeller="selectedSeller" v-show="sellerSelected"></seller>-->
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import header from 'components/header/header';
-
-  import {urlParse} from 'common/js/utils';
-
-  const RES_OK = 0;
+  import seller from 'components/seller/seller';
 
   export default {
     data() {
       return {
-        seller: {
-          id: (() => {
-            let param = urlParse();
-            return param.id;
-          })()
-        }
+        selectedSeller: {},
+        sellerSelected: false
       };
     },
-    created() {
-      this.$http.get('/api/seller').then((response) => {
-        response = response.body;
-        if (response.errno === RES_OK) {
-          this.seller = Object.assign({}, this.seller, response.data);
-        }
-      });
+    watch: {
+      '$route'(to, from) {
+        const toDepth = to.path.split('/').length;
+        const fromDepth = from.path.split('/').length;
+        this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
+      }
+    },
+    methods: {
+      selectSeller(seller) {
+        this.selectedSeller = seller;
+        this.sellerSelected = true;
+      }
     },
     components: {
-      'v-header': header
+      seller
     }
   };
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "./common/stylus/mixin.styl";
+  @import "./common/stylus/mixin.styl"
 
-  .tab
-    display: flex
+  .toolbar-wrapper
+    position: fixed
+    left: 0
+    bottom: 0
     width: 100%
-    height: 40px
-    line-height: 40px
-    border-1px(rgba(7, 17, 27, 0.1))
-    .tab-item
-      flex: 1
-      text-align: center
-      & > a
-        display: block
-        font-size: 14px
-        color: rgb(77, 85, 93)
-        &.active
-          color: rgb(240, 20, 20)
+    .toolbar
+      display: flex
+      height: 48px
+      line-height: 48px
+      border-1px-before(rgba(7, 17, 27, 0.1))
+      .toolbar-item
+        flex: 1
+        text-align: center
+        & > a
+          display: block
+          font-size: 14px
+          color: rgb(77, 85, 93)
+          &.active
+            color: rgb(0, 160, 220)
 </style>
