@@ -1,6 +1,6 @@
 <template>
-  <div class="swiper" ref="swiper">
-    <div class="swiper-wrapper" ref="swiperWrapper">
+  <div class="slider" ref="slider">
+    <div class="slider-wrapper" ref="sliderWrapper">
         <span class="page" v-for="page in pages">
           <div class="row" v-for="row in page">
             <div class="cell" v-for="cell in row">
@@ -81,23 +81,35 @@
       }
     },
     mounted() {
-      this._setSliderWidth();
-      this._initSlider();
+      setTimeout(() => {
+        this._setSliderWidth();
+        this._initSlider();
+      }, 20);
+      window.addEventListener('resize', () => {
+        if (!this.slider || !this.slider.enabled) {
+          return;
+        }
+        clearTimeout(this.resizeTimer);
+        this.resizeTimer = setTimeout(() => {
+          this._setSliderWidth();
+          this.slider.refresh();
+        }, 60);
+      });
     },
     methods: {
       _setSliderWidth() {
-        this.children = this.$refs.swiperWrapper.children;
+        let children = this.$refs.sliderWrapper.children;
         let width = 0;
-        let sliderWidth = this.$refs.swiper.clientWidth;
-        for (let i = 0; i < this.children.length; i++) {
-          let child = this.children[i];
-          child.style.width = sliderWidth + 'px';
-          width += sliderWidth;
+        let clientWidth = this.$refs.slider.clientWidth;
+        for (let i = 0; i < children.length; i++) {
+          let child = children[i];
+          child.style.width = clientWidth + 'px';
+          width += clientWidth;
         }
-        this.$refs.swiperWrapper.style.width = width + 'px';
+        this.$refs.sliderWrapper.style.width = width + 'px';
       },
       _initSlider() {
-        this.slider = new BScroll(this.$refs.swiper, {
+        this.slider = new BScroll(this.$refs.slider, {
           scrollX: true,
           scrollY: false,
           momentum: false,
@@ -118,8 +130,8 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  .swiper
-    .swiper-wrapper
+  .slider
+    .slider-wrapper
       padding: 18px 0
       .page
         float: left
@@ -143,6 +155,7 @@
                 margin-top: 8px
                 text-align: center
                 font-size: 12px
+                color: #7c7b7c
     .dots-wrapper
       text-align: center
 

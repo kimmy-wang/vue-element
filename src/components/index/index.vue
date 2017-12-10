@@ -2,7 +2,54 @@
   <div class="index" ref="index">
     <div class="index-content">
       <div class="index-wrapper">
-        <swiper :showList="showList" :ShowCountInRow="countInRow" :showRowsInPage="rowsInPage"></swiper>
+        <slider :showList="showList" :ShowCountInRow="countInRow" :showRowsInPage="rowsInPage"></slider>
+        <div class="vip-wrapper">
+          <!--<img :src=""/>-->
+          <div class="content-wrapper">
+            <div class="content">
+              <span class="title">成为<span class="stress">超级会员</span> 每月获<span class="stress">20元</span>红包</span>
+              <span class="icon-keyboard_arrow_right"></span>
+            </div>
+            <div class="desc">下单再送奖励金，可等额兑现红包</div>
+          </div>
+        </div>
+        <div class="discounts-wrapper">
+          <div class="discount-top">
+            <div class="discount-top-wrapper">
+              <div class="discount-top-content">
+                <span class="title">限量抢购</span>
+                <span class="desc">超值美味 9.9元起</span>
+                <span class="description">2855人正在抢<span class="icon-keyboard_arrow_right"></span></span>
+              </div>
+            </div>
+            <div class="discount-top-wrapper">
+              <div class="discount-top-content">
+                <span class="title stress">外卖节特惠</span>
+                <span class="desc">2亿红包瓜分中</span>
+              </div>
+            </div>
+          </div>
+          <div class="discount-bottom">
+            <div class="discount-bottom-wrapper">
+              <div class="discount-bottom-content">
+                <span class="name">天天特价</span>
+                <span class="desc stress">低至1折</span>
+              </div>
+            </div>
+            <div class="discount-bottom-wrapper">
+              <div class="discount-bottom-content">
+                <span class="name">热卖套餐</span>
+                <span class="desc">销量最高,好评最多</span>
+              </div>
+            </div>
+            <div class="discount-bottom-wrapper">
+              <div class="discount-bottom-content">
+                <span class="name">品质优选</span>
+                <span class="desc">尖货来袭</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <split></split>
       <div class="tip-wrapper">
@@ -59,7 +106,7 @@
   import split from 'components/split/split';
   import star from 'components/star/star';
   import seller from 'components/seller/seller';
-  import swiper from 'components/swiper/swiper';
+  import slider from 'components/slider/slider';
 
   const RES_OK = 0;
 
@@ -139,7 +186,7 @@
       split,
       star,
       seller,
-      swiper
+      slider
     }
   };
 </script>
@@ -153,6 +200,94 @@
     bottom: 48px
     width: 100%
     overflow: hidden
+    .index-wrapper
+      .vip-wrapper
+        position: relative
+        margin: 10px
+        height: 80px
+        background: #fbf4d6
+        .content-wrapper
+          position: absolute
+          top: 10px
+          left: 10px
+          .content
+            font-size: 0
+            .title
+              font-size: 18px
+              font-weight: 700
+              color: rgb(7, 17, 27)
+              .stress
+                font-weight: 700
+                color: #b89f3c
+            .icon-keyboard_arrow_right
+              font-size: 18px
+          .desc
+            margin-top: 8px
+            font-size: 14px
+            color: rgb(77, 85, 93)
+      .discounts-wrapper
+        padding: 0 10px 10px 10px
+        .discount-top
+          display: flex
+          justify-content: space-between
+          .discount-top-wrapper
+            position: relative
+            flex: 1
+            height: 150px
+            margin-right: 6px
+            background: #f7f7f8
+            &:last-child
+              margin-right: 0
+            .discount-top-content
+              position: absolute
+              top: 15px
+              left: 15px
+              .title
+                display: block
+                margin-bottom: 8px
+                font-size: 20px
+                font-weight: 700
+                color: #333333
+                &.stress
+                  color: rgb(240, 20, 20)
+              .desc
+                display: block
+                margin-bottom: 10px
+                font-size: 16px
+                color: #9f9f9f
+              .description
+                display: block
+                font-size: 16px
+                color: #a88465
+        .discount-bottom
+          display: flex
+          justify-content: space-between
+          .discount-bottom-wrapper
+            position: relative
+            flex: 1
+            margin: 6px 6px 0 0
+            height: 150px
+            background: #f7f7f8
+            &:last-child
+              margin-right: 0
+            .discount-bottom-content
+              display: block
+              text-align: center
+              .name
+                display: block
+                font-size: 18px
+                font-weight: 700
+                margin-top: 14px
+                margin-bottom: 4px
+                color: #333333
+              .desc
+                display: inline-block
+                font-size: 12px
+                border: 1px solid rgba(7, 17, 27, 0.1)
+                color: #8e8e8e
+                &.stress
+                  color: rgb(240, 20, 20)
+                  border: 1px solid rgba(240, 20, 20, 0.1)
     .tip-wrapper
       .tip
         display: flex
@@ -222,6 +357,7 @@
               font-size: 0
               color: rgb(147, 153, 159)
               .min-price
+                display: inline-block
                 padding-right: 4px
                 border-right: 1px solid rgba(7, 17, 27, 0.1)
                 font-size: 12px
@@ -238,6 +374,7 @@
               margin-bottom: 8px
               font-size: 0
               .intro
+                display: inline-block
                 font-size: 12px
                 margin-right: 2px
                 color: rgb(147, 153, 159)
@@ -253,10 +390,11 @@
               margin-top: 8px
               font-size: 0
               .distance
+                display: inline-block
                 padding-right: 4px
                 color: rgb(147, 153, 159)
                 font-size: 12px
-                // border-right: 1px solid rgba(7, 17, 27, 0.1)
+                border-right: 1px solid rgba(7, 17, 27, 0.1)
                 &:last-child
                   border: 0
                   padding-right: 0
@@ -264,4 +402,6 @@
 
         .index-supports-wrapper
           margin-left: 90px
+
+
 </style>
