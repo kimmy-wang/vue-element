@@ -107,14 +107,18 @@
             line-height: 16px
             font-size: 12px
       .toggle-wrapper
+        display: table
         position: absolute
         top: 13px
         right: 0
+        height: 14px
         .content
-          display: inline-block
-          vertical-align: top
+          display: table-cell
+          vertical-align: middle
           font-size: 12px
         .icon
+          display: table-cell
+          vertical-align: middle
           font-size: 12px
 
 

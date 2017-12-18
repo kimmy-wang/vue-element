@@ -6,7 +6,7 @@
             <div class="cell" v-for="cell in row">
               <div class="cell-wrapper">
                 <span class="img-wrapper">
-                  <img :src="cell.img" width="48" height="48" v-show="cell.img">
+                  <img :src="cell.img" width="45" height="45" v-show="cell.img">
                 </span>
                 <span class="cell-content">{{cell.title}}</span>
               </div>
@@ -146,8 +146,8 @@
               .img-wrapper
                 display: block
                 margin: 0 auto
-                width: 48px
-                height: 48px
+                width: 45px
+                height: 45px
                 img
                   border-radius: 50%
               .cell-content
