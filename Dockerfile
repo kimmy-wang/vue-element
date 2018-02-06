@@ -18,4 +18,4 @@ ENV PORT 6000
 EXPOSE 6000
 
 #
-CMD [ "npm", "run", "build", "daemon off;"]
+CMD [ "npm", "run", "prod", "daemon off;"]
