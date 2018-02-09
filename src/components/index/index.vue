@@ -107,6 +107,7 @@
   import star from 'components/star/star';
   import seller from 'components/seller/seller';
   import slider from 'components/slider/slider';
+  import {getSellers} from 'api/index'
 
   const RES_OK = 0;
 
@@ -179,17 +180,17 @@
       };
     },
     created() {
-      this.$http.get('/api/sellers').then((response) => {
-        response = response.body;
-        if (response.errno === RES_OK) {
-          this.sellers = response.data;
+      getSellers().then((res) => {
+        console.log(res)
+        if (res.errno === RES_OK) {
+          this.sellers = res.data;
           this.$nextTick(() => {
             this.scroll = new BScroll(this.$refs.index, {
               click: true
             });
           });
         }
-      });
+      })
     },
     methods: {
       select(seller, event) {
