@@ -1,23 +1,43 @@
 var express = require('express')
 var compression = require('compression')
 var config = require('./config/index')
-var axios = require('axios')
+const data = require('./src/common/js/data')
+
+var seller = data.seller;
+var sellers = data.sellers;
+var goods = data.goods;
+var ratings = data.ratings;
 
 var port = process.env.PORT || config.build.port
-const BASE_URL = 'https://www.insco-api.com'
 
 var app = express()
 
 var apiRoutes = express.Router()
 
-apiRoutes.get('/find/getBanner', function (req, res) {
-  const url = BASE_URL + '/banner'
-  axios.get(url).then((response) => {
-    res.json(response.data)
-  }).catch((e) => {
-    console.log(e)
+apiRoutes.get('/seller', function(req, res) {
+  res.json({
+    errno: 0,
+    data: seller
   })
-})
+});
+apiRoutes.get('/sellers', function(req, res) {
+  res.json({
+    errno: 0,
+    data: sellers
+  })
+});
+apiRoutes.get('/goods', function(req, res) {
+  res.json({
+    errno: 0,
+    data: goods
+  })
+});
+apiRoutes.get('/ratings', function(req, res) {
+  res.json({
+    errno: 0,
+    data: ratings
+  })
+});
 
 app.use('/api', apiRoutes)
 

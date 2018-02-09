@@ -14,8 +14,8 @@ COPY . /home/Service
 RUN npm install
 RUN npm run build
 
-ENV PORT 6000
-EXPOSE 6000
+ENV PORT 3000
+EXPOSE 3000
 
 #
 CMD [ "npm", "run", "prod", "daemon off;"]

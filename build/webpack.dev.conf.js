@@ -7,15 +7,16 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const data = require('../src/common/js/data')
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
-var appData = require('../data.json');
-var seller = appData.seller;
-var sellers = appData.sellers;
-var goods = appData.goods;
-var ratings = appData.ratings;
+// var appData = require('../data.json');
+var seller = data.seller;
+var sellers = data.sellers;
+var goods = data.goods;
+var ratings = data.ratings;
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
