@@ -70,7 +70,7 @@
           <li @click="select(seller, $event)" class="seller-item border-1px" v-for="seller in sellers">
             <div class="seller-wrapper">
               <div class="avatar">
-                <img :src="seller.avatar" width="80" height="80"/>
+                <img v-lazy="seller.avatar" width="80" height="80"/>
               </div>
               <div class="content-wrapper">
                 <div class="title">
