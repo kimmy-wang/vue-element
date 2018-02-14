@@ -79,7 +79,6 @@
         }
         this.pages.push(page);
       }
-      console.log(this.pages);
     },
     mounted() {
       setTimeout(() => {

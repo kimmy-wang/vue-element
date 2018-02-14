@@ -1,5 +1,5 @@
 <template>
-  <div class="supports">
+  <div class="supports" @click.stop>
     <div class="supports-content" v-show="supports && supports.length>0">
       <div class="supports-wrapper" ref="supportsWrapper">
         <ul>
@@ -8,7 +8,7 @@
           </li>
         </ul>
       </div>
-      <div @click.stop.prevent="toggleIcon" class="toggle-wrapper" v-show="supports.length>2">
+      <div @click="toggleIcon" class="toggle-wrapper" v-show="supports.length>2">
         <span class="content">{{supports.length}}个活动</span><span class="icon" :class="iconDesc?'icon-desc':'icon-asc'"></span>
       </div>
     </div>
@@ -38,6 +38,7 @@
         if (!event._constructed) {
           return;
         }
+        console.log('support')
         this.iconDesc = !this.iconDesc;
         this._toggleList(this.iconDesc);
       },
@@ -65,7 +66,7 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "../../common/stylus/mixin.styl"
+  @import "~common/stylus/mixin.styl"
 
   .supports
     width: 100%

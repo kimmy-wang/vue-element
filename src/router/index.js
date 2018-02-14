@@ -7,6 +7,7 @@ import me from 'components/me/me';
 import goods from 'components/goods/goods';
 import ratings from 'components/ratings/ratings';
 import sellerinfo from 'components/sellerinfo/sellerinfo';
+import Seller from 'components/seller/seller';
 
 Vue.use(Router);
 
@@ -17,7 +18,13 @@ const routes = [
   },
   {
     path: '/index',
-    component: index
+    component: index,
+    children: [
+      {
+        path: ':id',
+        component: Seller
+      }
+    ]
   },
   {
     path: '/find',
