@@ -1,7 +1,7 @@
 <template>
   <div class="seller-list">
     <ul>
-      <li @click="selectSeller(seller, $event)" class="seller-item border-1px" v-for="seller in sellers">
+      <li @click="selectSeller(seller, $event)" class="seller-item border-1px" v-for="(seller,index) in sellers">
         <div class="seller-wrapper">
           <div class="avatar">
             <img v-lazy="seller.avatar" width="80" height="80"/>
@@ -22,8 +22,8 @@
           </div>
           <div class="desc-content">
             <div class="intro-wrapper">
-              <span class="intro">保</span>
-              <span class="intro">票</span>
+              <span class="intro" v-show="index%3===0">保</span>
+              <span class="intro" v-show="index%2===0">票</span>
             </div>
             <span class="description">{{seller.description}}</span>
             <div class="distance-wrapper">
