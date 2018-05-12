@@ -1,4 +1,4 @@
-'<template>
+<template>
     <div class="toolbar-wrapper">
       <div class="toolbar border-1px-before">
         <div class="toolbar-item">
